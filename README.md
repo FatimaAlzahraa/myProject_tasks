@@ -1,2 +1,2 @@
 # myProject_tasks
-mini project with nodejs expressjs mongoose 
+mini project with nodejs expressjs and mongoose 
