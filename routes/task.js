@@ -1,14 +1,14 @@
 const express = require("express");
 const controller = require("../controllers/task");
-//const validate = require("../middlewares/validation/posts");
-//const sanitize = require("../middlewares/sanitization/posts");
+const validate = require("../middlewares/validation/task");
+const sanitize = require("../middlewares/sanitization/task");
 
 const route = express.Router();
 
-route.get("/getTask", controller.getAll);;
-route.delete("/delete:id",  controller.deleteOne);
+route.get("/", controller.getAll);;
+route.delete("/:id",validate.deleteOne,  controller.deleteOne);
 
-route.post("/add", controller.addOne);
-route.post("/update:id", controller.updateOne);
+route.post("/", sanitize.addOne, validate.addOne, controller.addOne);
+route.patch("/:id",sanitize.updateOne,validate.updateOne, controller.updateOne);
 
 module.exports = route;

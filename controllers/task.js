@@ -11,6 +11,7 @@ const controller ={
           if (err) next(err);
           if (task) res.status(200).json({ message: "task is added" });
         });
+        return;
       },
     //delete task
     deleteOne: (req, res, next) => {
@@ -20,14 +21,18 @@ const controller ={
             ? res.status(200).json({ message: "task is deleted" })
             : res.status(404).json({ message: "task not found" });
         });
+        return;
       },
       //update
       updateOne: (req, res, next) => {
+        
         const update = {
           title: req.body.title,
           desc: req.body.desc,
           isComplete:req.body.isComplete,
-          modifiedAt:Date.now,
+         
+          modifiedAt:Date.now() ,
+          
         };
         queries.updateOne(req.params.id, update, (err, task) => {
           if (err) next(err);
@@ -39,6 +44,7 @@ const controller ={
             res.json({ message: "task not found" });
           }
         });
+        return;
       },
       //rtrieve
       getAll: (req, res, next) => {
@@ -55,7 +61,9 @@ const controller ={
             res.json({ message: "no tasks added yet" });
           }
         });
+        return;
       },
+
 
 };
 module.exports = controller;

@@ -4,9 +4,11 @@ const taskSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    max:200,
   },
   desc: {
     type: String,
+    max:500,
     
   },
   isComplete:{
